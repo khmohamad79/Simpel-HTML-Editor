@@ -1,8 +1,9 @@
 #pragma once
+#include "Tag.h"
 class TagNode
 {
 public:
-	TagNode();
-	~TagNode();
+	Tag data;
+	TagNode* next;
 };
 
