@@ -1,19 +1,25 @@
 #pragma once
-template <class N> class LinkedList
+template <class T> class Node
+{
+	T data;
+	Node* next;
+};
+template <class T> class LinkedList
 {
 	unsigned int size;
-	N* head;
+	Node<T>* head;
 public:
 	LinkedList();
-	LinkedList(const N & node)
+	LinkedList(const T & nodeData);
 	~LinkedList();
-	bool addNode(const N & node);
-	bool addNode(const N & node, const unsigned int & index);
-	bool addNode(const N & node, N* previousNodeptr);
-	bool removeNode(const unsigned int & index);
-	bool removeNode(N* nodeptr);
-	N* getNode(const unsigned int & index) const;
-	N* getNode(N* previous) const;
+	void addNode(const T & nodeData);
+	void addNode(const T & nodeData, const unsigned int & index);
+	// void addNode(const T & nodeData, Node<T>* previousNode);
+	void removeNode(const unsigned int & index);
+	void removeNode(Node<T>* nodePtr);
+	T* getNodeData(const unsigned int & index) const;
+	Node<T>* getNode(const unsigned int & index) const;
+	// Node<T>* getNode(Node<T>* previousNode) const;
 	unsigned int getSize() const;
 };
 
