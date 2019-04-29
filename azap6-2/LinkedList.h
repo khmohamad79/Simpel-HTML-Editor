@@ -17,7 +17,7 @@ public:
 	// void addNode(const T & nodeData, Node<T>* previousNode);
 	void removeNode(const unsigned int & index);
 	// void removeNode(Node<T>* nodePtr);
-	T* getNodeData(const unsigned int & index) const;
+	T getNodeData(const unsigned int & index) const;
 	// Node<T>* getNode(const unsigned int & index) const;
 	// Node<T>* getNode(Node<T>* previousNode) const;
 	unsigned int getSize() const;

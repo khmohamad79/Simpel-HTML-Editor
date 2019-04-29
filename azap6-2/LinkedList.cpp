@@ -50,3 +50,67 @@ void LinkedList<T>::addNode(const T & nodeData)
 	}
 	size++;
 }
+
+template<class T>
+void LinkedList<T>::addNode(const T & nodeData, const unsigned int & index)
+{
+	if (index<0 || index>size) return;
+	else if (index == size) addNode(nodeData);
+	else if (index == 0)
+	{
+		Node<T>* tempNode = new Node<T>;
+		tempNode->data = nodeData;
+		tempNode->next = head;
+		head = tempNode;
+	}
+	else
+	{
+		Node<T>* previousNode = head;
+		for (int i = 0; i < (index - 1); i++) previousNode = previousNode->next;
+		Node<T>* tempNode = new Node<T>;
+		tempNode->data = nodeData;
+		tempNode->next = previousNode->next;
+		previousNode->next = tempNode;
+	}
+}
+
+template<class T>
+void LinkedList<T>::removeNode(const unsigned int & index)
+{
+	if (index<0 || index>=size) return;
+	else if (index == 0)
+	{
+		Node<T>* tempNode = head->next;
+		delete head;
+		head = tempNode;
+	}
+	else
+	{
+		Node<T>* previousNode = head;
+		for (int i = 0; i < (index - 1); i++) previousNode = previousNode->next;
+		Node<T>* tempNode = previousNode->next->next;
+		delete previousNode->next;
+		previousNode->next = tempNode;
+	}
+}
+
+template<class T>
+T LinkedList<T>::getNodeData(const unsigned int & index) const
+{
+	if (index<0 || index>=size) return NULL;
+	else
+	{
+		Node<T>* currentNode = head;
+		for (int i = 0; i < index; i++) currentNode = currentNode->next;
+		return currentNode->data;
+	}
+	return T();
+}
+
+template<class T>
+unsigned int LinkedList<T>::getSize() const
+{
+	return size;
+}
+
+
