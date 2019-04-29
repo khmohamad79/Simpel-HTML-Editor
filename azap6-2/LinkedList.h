@@ -2,7 +2,7 @@
 template <class T> class Node
 {
 	T data;
-	Node* next;
+	Node<T>* next;
 };
 template <class T> class LinkedList
 {
@@ -16,9 +16,9 @@ public:
 	void addNode(const T & nodeData, const unsigned int & index);
 	// void addNode(const T & nodeData, Node<T>* previousNode);
 	void removeNode(const unsigned int & index);
-	void removeNode(Node<T>* nodePtr);
+	// void removeNode(Node<T>* nodePtr);
 	T* getNodeData(const unsigned int & index) const;
-	Node<T>* getNode(const unsigned int & index) const;
+	// Node<T>* getNode(const unsigned int & index) const;
 	// Node<T>* getNode(Node<T>* previousNode) const;
 	unsigned int getSize() const;
 };

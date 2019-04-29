@@ -2,21 +2,18 @@
 
 
 
-template <class N> 
-LinkedList<N>::LinkedList()
+template <class T> 
+LinkedList<T>::LinkedList()
 {
-	head = nullptr;
 	size = 0;
+	head = nullptr;
 }
 
 template<class T>
 LinkedList<T>::LinkedList(const T & nodeData)
 {
-	Node<T>* tempNode = new Node<T>;
-	tempNode->data = nodeData;
-	tempNode->next = nullptr;
-	head = tempNode;
-	size = 1;
+	size = 0;
+	addNode(nodeData);
 }
 
 template<class T>
@@ -29,4 +26,27 @@ LinkedList<T>::~LinkedList()
 		delete currentNode;
 		currentNode = tempNode;
 	}
+}
+
+template<class T>
+void LinkedList<T>::addNode(const T & nodeData)
+{
+	Node<T>* tempNode = new Node<T>;
+	tempNode->data = nodeData;
+	tempNode->next = nullptr;
+	
+	if (head == nullptr)
+	{
+		head = tempNode;
+	}
+	else
+	{
+		Node<T>* currentNode = head;
+		while (currentNode->next != nullptr)
+		{
+			currentNode = currentNode->next;
+		}
+		currentNode->next = tempNode;
+	}
+	size++;
 }
