@@ -2,7 +2,7 @@
 
 
 
-template <class T> 
+template<class T> 
 LinkedList<T>::LinkedList()
 {
 	size = 0;
@@ -72,6 +72,7 @@ void LinkedList<T>::addNode(const T & nodeData, const unsigned int & index)
 		tempNode->next = previousNode->next;
 		previousNode->next = tempNode;
 	}
+	size++;
 }
 
 template<class T>
@@ -92,6 +93,7 @@ void LinkedList<T>::removeNode(const unsigned int & index)
 		delete previousNode->next;
 		previousNode->next = tempNode;
 	}
+	size--;
 }
 
 template<class T>
