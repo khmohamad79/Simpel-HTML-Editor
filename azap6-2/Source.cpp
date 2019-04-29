@@ -13,6 +13,7 @@ int main()
 		cout << mylist.getNodeData(i);
 	}
 	cout << endl;
+	mylist.addNode(0, 2);
 	while (mylist.getSize()>0)
 	{
 		cout << mylist.getNodeData(mylist.getSize() - 1);

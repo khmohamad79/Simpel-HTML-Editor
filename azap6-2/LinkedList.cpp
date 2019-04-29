@@ -62,6 +62,7 @@ void LinkedList<T>::addNode(const T & nodeData, const unsigned int & index)
 		tempNode->data = nodeData;
 		tempNode->next = head;
 		head = tempNode;
+		size++;
 	}
 	else
 	{
@@ -71,8 +72,8 @@ void LinkedList<T>::addNode(const T & nodeData, const unsigned int & index)
 		tempNode->data = nodeData;
 		tempNode->next = previousNode->next;
 		previousNode->next = tempNode;
+		size++;
 	}
-	size++;
 }
 
 template<class T>
@@ -84,6 +85,7 @@ void LinkedList<T>::removeNode(const unsigned int & index)
 		Node<T>* tempNode = head->next;
 		delete head;
 		head = tempNode;
+		size--;
 	}
 	else
 	{
@@ -92,8 +94,8 @@ void LinkedList<T>::removeNode(const unsigned int & index)
 		Node<T>* tempNode = previousNode->next->next;
 		delete previousNode->next;
 		previousNode->next = tempNode;
+		size--;
 	}
-	size--;
 }
 
 template<class T>
