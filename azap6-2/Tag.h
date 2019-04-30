@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include <iterator>
 #include <map>
 #include <string.h>
@@ -7,8 +7,8 @@ class Tag
 {
 	std::map<std::string, std::string> attributes;
 	std::string text;
-	std::list<Tag> tags;
-	std::list<std::string> texts;
+	std::vector<Tag> tags;
+	std::vector<std::string> texts;
 public:
 	Tag();
 	~Tag();

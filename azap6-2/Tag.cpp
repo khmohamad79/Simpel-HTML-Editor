@@ -14,7 +14,7 @@ Tag::~Tag()
 
 void Tag::addTag(const Tag & tag)
 {
-	tags.push_front(tag);
+	tags.push_back(tag);
 	texts.push_back("");
 }
 
