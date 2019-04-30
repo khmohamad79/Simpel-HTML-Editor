@@ -15,8 +15,8 @@ public:
 
 	void addTag(const Tag & tag);
 	void addText(const char* str);
-	void addTag(const Tag & tag, const unsigned int & index);
-	void addText(const char* str, const unsigned int & index);
+	void insertTag(const Tag & tag, const unsigned int & index);
+	void insertText(const char* str, const unsigned int & index);
 	void removeTag();
 	void removeText();
 	void removeTag(const unsigned int & index);
