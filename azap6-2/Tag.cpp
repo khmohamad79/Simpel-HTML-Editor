@@ -139,10 +139,10 @@ std::string Tag::getAttrVal(const char * str_name) const
 
 std::ostream & operator<<(std::ostream & output, const Tag & tag)
 {
-	output << "<" << tag.name << " ";
+	output << "<" << tag.name;
 	for (auto it = tag.attributes.cbegin(); it != tag.attributes.cend(); ++it)
 	{
-		output << it->first << "=" << it->second << " ";
+		output << " " << it->first << "=\"" << it->second << "\"";
 	}
 	output << ">";
 	output << tag.text;
