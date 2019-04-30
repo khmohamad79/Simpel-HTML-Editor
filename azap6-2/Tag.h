@@ -1,14 +1,14 @@
 #pragma once
-#include "LinkedList.h"
+#include <list>
 #include <iterator>
 #include <map>
 #include <string.h>
 class Tag
 {
 	std::map<std::string, std::string> attributes;
-	LinkedList<Tag> tags;
 	std::string text;
-	LinkedList<std::string> texts;
+	std::list<Tag> tags;
+	std::list<std::string> texts;
 public:
 	Tag();
 	~Tag();
