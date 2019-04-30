@@ -20,7 +20,7 @@ void Tag::addTag(const Tag & tag)
 
 void Tag::addText(const char * str)
 {
-	if (texts.size() > 0) *(texts.end()) = str;
+	if (texts.size() > 0) texts[texts.size() - 1] = str;
 	else text = str;
 }
 
@@ -48,13 +48,13 @@ void Tag::removeTag()
 
 void Tag::removeText()
 {
-	if (texts.size() > 0) *(texts.end()) = "";
+	if (texts.size() > 0) texts.at(texts.size() - 1) = "";
 	else text = "";
 }
 
 void Tag::removeTag(const unsigned int & index)
 {
-	if (index == 0) text += *(texts.begin());
+	if (index == 0) text += texts.at(0);
 	else texts.at(index - 1) += texts.at(index);
 	tags.erase(tags.begin() + index);
 	texts.erase(texts.begin() + index);
@@ -62,7 +62,7 @@ void Tag::removeTag(const unsigned int & index)
 
 void Tag::removeText(const unsigned int & index)
 {
-	if (index >= 0 && index < texts.size()) *(texts.begin() + index) = "";
+	if (index >= 0 && index < texts.size()) texts.at(index) = "";
 	else text = "";
 }
 
