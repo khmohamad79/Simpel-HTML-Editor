@@ -38,6 +38,6 @@ public:
 	std::string getText(const unsigned int & index) const;
 	std::string getAttrVal(const char* str_name) const;
 
-	friend std::ostream & operator<<(std::ostream & output, const Tag & tag_);
+	friend std::ostream & operator<<(std::ostream & output, const Tag & tag);
 };
 
