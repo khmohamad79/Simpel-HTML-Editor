@@ -55,7 +55,7 @@ void Tag::removeText()
 void Tag::removeTag(const unsigned int & index)
 {
 	if (index == 0) text += *(texts.begin());
-	else *(texts.at[index - 1]) += *(texts.at[index]);
+	else texts.at(index - 1) += texts.at(index);
 	tags.erase(tags.begin() + index);
 	texts.erase(texts.begin() + index);
 }
@@ -117,6 +117,11 @@ Tag & Tag::getTag(const unsigned int & index)
 	return tags.at(index);
 }
 
+std::string Tag::getName() const
+{
+	return name;
+}
+
 std::string Tag::getText() const
 {
 	return text;
@@ -130,7 +135,7 @@ std::string Tag::getText(const unsigned int & index) const
 std::string Tag::getAttrVal(const char * str_name) const
 {
 	return attributes.at(str_name);
-}.
+}
 
 std::ostream & operator<<(std::ostream & output, const Tag & tag)
 {
@@ -146,4 +151,5 @@ std::ostream & operator<<(std::ostream & output, const Tag & tag)
 		output << tag.tags[i] << tag.texts[i];
 	}
 	output << "</" << tag.name << ">";
+	return output;
 }

@@ -33,10 +33,11 @@ public:
 	
 	unsigned int getSize() const;
 	Tag & getTag(const unsigned int & index);
+	std::string getName() const;
 	std::string getText() const;
 	std::string getText(const unsigned int & index) const;
 	std::string getAttrVal(const char* str_name) const;
 
-	friend std::ostream & operator<<(std::ostream & output, const Tag & tag);
+	friend std::ostream & operator<<(std::ostream & output, const Tag & tag_);
 };
 
