@@ -2,7 +2,7 @@
 #include <vector>
 #include <iterator>
 #include <map>
-#include <string.h>
+#include <string>
 class Tag
 {
 	std::string name;
