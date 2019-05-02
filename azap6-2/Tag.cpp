@@ -2,6 +2,13 @@
 
 
 
+void Tag::generateHtml(std::ostream & output) const
+{
+	output << "<<" << name;
+	output << ">>";
+	output << "<</" << name << ">>";
+}
+
 Tag::Tag(std::string tag_name)
 {
 	name = tag_name;
@@ -43,17 +50,6 @@ std::string Tag::getAttrVal(const char * str_name) const
 
 std::ostream & operator<<(std::ostream & output, const Tag & tag)
 {
-	output << "<" << tag.name;
-	for (auto it = tag.attributes.cbegin(); it != tag.attributes.cend(); ++it)
-	{
-		output << " " << it->first << "=\"" << it->second << "\"";
-	}
-	output << ">";
-	output << tag.text;
-	for (int i = 0; i < tag.getSize(); i++)
-	{
-		output << tag.tags[i] << tag.texts[i];
-	}
-	output << "</" << tag.name << ">";
+	tag.generateHtml(output);
 	return output;
 }

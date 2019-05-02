@@ -2,6 +2,22 @@
 
 
 
+void PairedTag::generateHtml(std::ostream & output) const
+{
+	output << "<" << name;
+	for (auto it = attributes.cbegin(); it != attributes.cend(); ++it)
+	{
+		output << " " << it->first << "=\"" << it->second << "\"";
+	}
+	output << ">";
+	output << text;
+	for (int i = 0; i < getSize(); i++)
+	{
+		output << tags[i] << texts[i];
+	}
+	output << "</" << name << ">";
+}
+
 PairedTag::PairedTag(std::string tag_name) :
 	Tag(tag_name)
 {
@@ -107,4 +123,11 @@ std::string PairedTag::getText() const
 std::string PairedTag::getText(const unsigned int & index) const
 {
 	return texts.at(index);
+}
+
+std::ostream & operator<<(std::ostream & output, const PairedTag & tag)
+{
+	//output << "*p*";
+	tag.generateHtml(output);
+	return output;
 }

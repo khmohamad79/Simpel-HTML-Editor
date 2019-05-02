@@ -6,6 +6,8 @@ class PairedTag :
 	std::string text;
 	std::vector<Tag> tags;
 	std::vector<std::string> texts;
+protected:
+	virtual void generateHtml(std::ostream & output) const;
 public:
 	PairedTag(std::string tag_name);
 	~PairedTag();
@@ -27,5 +29,7 @@ public:
 	Tag & getTag(const unsigned int & index);
 	std::string getText() const;
 	std::string getText(const unsigned int & index) const;
+
+	friend std::ostream & operator<<(std::ostream & output, const PairedTag & tag);
 };
 
