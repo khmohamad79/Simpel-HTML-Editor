@@ -143,12 +143,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="PairedTag.h" />
+    <ClInclude Include="SingleTag.h" />
+    <ClInclude Include="TagMenu.h" />
     <ClInclude Include="Tag.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="PairedTag.cpp" />
+    <ClCompile Include="SingleTag.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tag.cpp" />
+    <ClCompile Include="TagMenu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

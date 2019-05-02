@@ -21,6 +21,15 @@
     <ClInclude Include="Tag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TagMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LinkedList.cpp">
@@ -30,6 +39,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TagMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleTag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PairedTag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
