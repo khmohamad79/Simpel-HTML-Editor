@@ -13,7 +13,7 @@ void PairedTag::generateHtml(std::ostream & output) const
 	output << text;
 	for (int i = 0; i < getSize(); i++)
 	{
-		output << tags[i] << texts[i];
+		output << *tags[i] << texts[i];
 	}
 	output << "</" << name << ">";
 }
@@ -30,7 +30,7 @@ PairedTag::~PairedTag()
 {
 }
 
-void PairedTag::addTag(const Tag & tag)
+void PairedTag::addTag(Tag * tag)
 {
 	tags.push_back(tag);
 	texts.push_back("");
@@ -42,7 +42,7 @@ void PairedTag::addText(const char * str)
 	else text = str;
 }
 
-void PairedTag::insertTag(const Tag & tag, const unsigned int & index)
+void PairedTag::insertTag(Tag * tag, const unsigned int & index)
 {
 	tags.insert(tags.begin() + index, tag);
 	texts.insert(texts.begin() + index, "");
@@ -94,7 +94,7 @@ void PairedTag::clear()
 	removeText();
 }
 
-void PairedTag::updateTag(const Tag & tag, const unsigned int & index)
+void PairedTag::updateTag(Tag * tag, const unsigned int & index)
 {
 	tags.at(index) = tag;
 }
@@ -110,7 +110,7 @@ unsigned int PairedTag::getSize() const
 	return tags.size(); // or texts.size()
 }
 
-Tag & PairedTag::getTag(const unsigned int & index)
+Tag * PairedTag::getTag(const unsigned int & index)
 {
 	return tags.at(index);
 }

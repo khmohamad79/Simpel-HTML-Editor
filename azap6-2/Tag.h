@@ -8,7 +8,7 @@ class Tag
 protected:
 	std::string name;
 	std::map<std::string, std::string> attributes;
-	virtual void generateHtml(std::ostream & output) const;
+	virtual void generateHtml(std::ostream & output) const = 0;
 public:
 	Tag(std::string tag_name);
 	~Tag();
