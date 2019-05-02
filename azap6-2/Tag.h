@@ -20,6 +20,7 @@ public:
 	
 	std::string getName() const;
 	std::string getAttrVal(const char* str_name) const;
+	std::map<std::string, std::string> getAttributes();
 
 	friend std::ostream & operator<<(std::ostream & output, const Tag & tag);
 };

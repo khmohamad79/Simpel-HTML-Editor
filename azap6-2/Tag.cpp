@@ -48,6 +48,11 @@ std::string Tag::getAttrVal(const char * str_name) const
 	return attributes.at(str_name);
 }
 
+std::map<std::string, std::string> Tag::getAttributes()
+{
+	return attributes;
+}
+
 std::ostream & operator<<(std::ostream & output, const Tag & tag)
 {
 	tag.generateHtml(output);
