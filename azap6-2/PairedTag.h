@@ -15,7 +15,7 @@ public:
 	void addTag(Tag * tag);
 	void addText(const char* str);
 	void insertTag(Tag * tag, const unsigned int & index);
-	void insertText(const char* str, const unsigned int & index);
+	void addText(const char* str, const unsigned int & index);
 	void removeTag();
 	void removeText();
 	void removeTag(const unsigned int & index);
@@ -23,6 +23,7 @@ public:
 	void clearTags();
 	void clear();
 	void updateTag(Tag * tag, const unsigned int & index);
+	void updateText(const char* str);
 	void updateText(const char* str, const unsigned int & index);
 
 	unsigned int getSize() const;

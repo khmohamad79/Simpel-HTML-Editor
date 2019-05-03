@@ -23,6 +23,7 @@ PairedTag::PairedTag(std::string tag_name) :
 {
 	name = tag_name;
 	text = "";
+
 }
 
 
@@ -38,8 +39,7 @@ void PairedTag::addTag(Tag * tag)
 
 void PairedTag::addText(const char * str)
 {
-	if (texts.size() > 0) texts[texts.size() - 1] = str;
-	else text = str;
+	text += str;
 }
 
 void PairedTag::insertTag(Tag * tag, const unsigned int & index)
@@ -48,10 +48,10 @@ void PairedTag::insertTag(Tag * tag, const unsigned int & index)
 	texts.insert(texts.begin() + index, "");
 }
 
-void PairedTag::insertText(const char * str, const unsigned int & index)
+void PairedTag::addText(const char * str, const unsigned int & index)
 {
-	if (index >= 0 && index < texts.size()) texts.at(index) = str;
-	else text = str;
+	if (index >= 0 && index < texts.size()) texts.at(index) += str;
+	else text += str;
 }
 
 void PairedTag::removeTag()
@@ -97,6 +97,11 @@ void PairedTag::clear()
 void PairedTag::updateTag(Tag * tag, const unsigned int & index)
 {
 	tags.at(index) = tag;
+}
+
+void PairedTag::updateText(const char * str)
+{
+	text = str;
 }
 
 void PairedTag::updateText(const char * str, const unsigned int & index)
