@@ -27,11 +27,14 @@ void showMenu(Tag * tag)
 	{
 		cout << ">" << endl;
 		PairedTag* ptag = (PairedTag*)tag;
+		cout << "   0.\"" << ptag->getText() << "\"\n";
 		for (int j = 0; j < c_tag; j++)
 		{
 			Tag* tempTag = ptag->getTag(j);
 			cout << "   " << (j + 1) << ".<" << ptag->getTag(j)->getName() << "/>\n";
+			cout << "   " << (j + 1) << ".\"" << ptag->getText(j) << "\"\n";
 		}
+		cout << "   " << (c_tag + 1) << ".</>\n";
 		cout << "</" << tag->getName() << ">\n";
 	}
 	else cout << ">" << endl;
@@ -47,13 +50,14 @@ void showMenu(Tag * tag)
 	}
 	if (type == 2)
 	{
-		cout << "4.AddText\n";
+		cout << "4.AppendText\n";
 		cout << "5.EditText\n";
 		cout << "6.DeleteText\n";
 		cout << "7.AddTag\n";
 		cout << "8.OpenTag\n";
 		cout << "9.DeleteTag\n";
 	}
+	cout << endl;
 
 	int ch_command = 0;
 	if (type == 1) {
@@ -133,9 +137,172 @@ void showMenu(Tag * tag)
 			}
 		}
 	}
-	
-	
-	
-	showMenu(tag);
+	else if (ch_command == 4)
+	{
+		PairedTag* ptag = (PairedTag*)tag;
+		int ch_num;
+		do
+		{
+			cout << "Enter Text number to append(-1:Cancel):";
+			cin >> ch_num;
+		} while (ch_num < -1 || ch_num > c_tag);
+		if (ch_num > 0)
+		{
+			cout << ptag->getText(ch_num - 1);
+			char temp_str[81];
+			cin.getline(temp_str, 80);
+			ptag->addText(temp_str, ch_num - 1);
+		}
+		else if (ch_num == 0)
+		{
+			cout << ptag->getText();
+			char temp_str[81];
+			cin.getline(temp_str, 80);
+			ptag->addText(temp_str);
+		}
+	}
+	else if (ch_command == 5)
+	{
+		PairedTag* ptag = (PairedTag*)tag;
+		int ch_num;
+		do
+		{
+			cout << "Enter Text number to edit(-1:Cancel):";
+			cin >> ch_num;
+		} while (ch_num < -1 || ch_num > c_tag);
+		if (ch_num > 0)
+		{
+			char temp_str[81];
+			cin.getline(temp_str, 80);
+			ptag->updateText(temp_str, ch_num - 1);
+		}
+		else if (ch_num == 0)
+		{
+			char temp_str[81];
+			cin.getline(temp_str, 80);
+			ptag->updateText(temp_str);
+		}
+	}
+	else if (ch_command == 6)
+	{
+		PairedTag* ptag = (PairedTag*)tag;
+		int ch_num;
+		do
+		{
+			cout << "Enter Text number to delete(-1:Cancel):";
+			cin >> ch_num;
+		} while (ch_num < -1 || ch_num > c_tag);
+		if (ch_num > 0)
+		{
+			ptag->removeText(ch_num - 1);
+		}
+		else if (ch_num == 0)
+		{
+			ptag->removeText();
+		}
+	}
+	else if (ch_command == 7)
+	{
+		PairedTag* ptag = (PairedTag*)tag;
+		int ch_num;
+		do
+		{
+			cout << "Enter Tag number to create(0:Cancel):";
+			cin >> ch_num;
+		} while (ch_num < 0 || ch_num >(c_tag + 1));
+		if (ch_num > 0)
+		{
+			Tag* tempTag = createTag();
+			if (tempTag != nullptr) {
+				ptag->insertTag(tempTag, ch_num - 1);
+			}
+		}
+	}
+	else if (ch_command == 8)
+	{
+		PairedTag* ptag = (PairedTag*)tag;
+		int ch_num;
+		do
+		{
+			cout << "Enter Tag number to open(0:Cancel):";
+			cin >> ch_num;
+		} while (ch_num < 0 || ch_num > c_tag);
+		if (ch_num > 0)
+		{
+			showMenu(ptag->getTag(ch_num - 1));
+		}
+	}
+	else if (ch_command == 9)
+	{
+		PairedTag* ptag = (PairedTag*)tag;
+		int ch_num;
+		do
+		{
+			cout << "Enter Tag number to delete(0:Cancel):";
+			cin >> ch_num;
+		} while (ch_num < 0 || ch_num > c_tag);
+		if (ch_num > 0)
+		{
+			ptag->removeTag(ch_num - 1);
+		}
+	}
 
+	showMenu(tag);
+}
+
+Tag * createTag()
+{
+	const int tag_num_single = 2;
+	const int tag_num_paired = 11;
+	const int tag_nums = tag_num_single + tag_num_paired + 2;
+	const char* tag_names[] = { "hr","br", "p","h1","h2","h3","h4","h5","h6","title","font","head","body","custom paired", "custom single" };
+	system("cls");
+	cout << "which tag you want?";
+	for (int i = 0; i < tag_nums; i++)
+	{
+		if (i % 4 == 0) cout << endl;
+		cout << "\t" << (i + 1) << "." << tag_names[i] << "\t";
+	}
+	cout << endl;
+
+	Tag* tempTag = nullptr;
+
+	int ch_num;
+	do
+	{
+		cout << "Enter Tag number to create(0:Cancel):";
+		cin >> ch_num;
+	} while (ch_num < 0 || ch_num >tag_nums);
+	if (ch_num > 0 && ch_num <= tag_num_single)
+	{
+		tempTag = new SingleTag(tag_names[ch_num - 1]);
+	}
+	else if (ch_num > tag_num_single && ch_num <= (tag_nums - 2))
+	{
+		PairedTag* tempPTag = new PairedTag(tag_names[ch_num - 1]);
+		cout << "Enter color(red,pink,... or #RGB or #RRGGBB :";
+		char tag_color[10];
+		cin >> tag_color;
+		tempPTag->addAttr("color", tag_color);
+		tempTag = tempPTag;
+	}
+	else if (ch_num == (tag_nums - 2))
+	{
+		cout << "Enter single tag name(0:Cancel):";
+		string tag_name;
+		cin >> tag_name;
+		if (tag_name != "0") {
+			tempTag = new SingleTag(tag_name);
+		}
+	}
+	else if (ch_num == (tag_nums - 1))
+	{
+		cout << "Enter paired tag name(0:Cancel):";
+		string tag_name;
+		cin >> tag_name;
+		if (tag_name != "0") {
+			tempTag = new PairedTag(tag_name);
+		}
+	}
+	return tempTag;
 }
