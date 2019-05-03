@@ -50,7 +50,8 @@ void PairedTag::insertTag(Tag * tag, const unsigned int & index)
 
 void PairedTag::addText(const char * str, const unsigned int & index)
 {
-	texts.at(index) += str;
+	if (index >= 0 && index < texts.size()) texts.at(index) += str;
+	else text += str;
 }
 
 void PairedTag::removeTag()
@@ -60,7 +61,8 @@ void PairedTag::removeTag()
 
 void PairedTag::removeText()
 {
-	text = "";
+	if (texts.size() > 0) texts.at(texts.size() - 1) = "";
+	else text = "";
 }
 
 void PairedTag::removeTag(const unsigned int & index)
@@ -73,7 +75,8 @@ void PairedTag::removeTag(const unsigned int & index)
 
 void PairedTag::removeText(const unsigned int & index)
 {
-	texts.at(index) = "";
+	if (index >= 0 && index < texts.size()) texts.at(index) = "";
+	else text = "";
 }
 
 void PairedTag::clearTags()
@@ -103,7 +106,8 @@ void PairedTag::updateText(const char * str)
 
 void PairedTag::updateText(const char * str, const unsigned int & index)
 {
-	texts.at(index) = str;
+	if (index >= 0 && index < texts.size()) texts.at(index) = str;
+	else text = str;
 }
 
 unsigned int PairedTag::getSize() const
