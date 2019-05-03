@@ -41,22 +41,23 @@ void showMenu(Tag * tag)
 
 	cout << endl;
 
-	if (type == 1 || type == 2)
-	{
-		cout << "0.Back\n";
-		cout << "1.AddAttribute\n";
-		cout << "2.EditAttribute\n";
-		cout << "3.DeleteAttrribute\n";
-	}
 	if (type == 2)
 	{
-		cout << "4.AppendText\n";
-		cout << "5.EditText\n";
-		cout << "6.DeleteText\n";
-		cout << "7.AddTag\n";
-		cout << "8.OpenTag\n";
-		cout << "9.DeleteTag\n";
+		cout << "7.AddTag        ";
+		cout << "8.OpenTag       ";
+		cout << "9.DeleteTag     \n";
+		cout << "4.AppendText    ";
+		cout << "5.EditText      ";
+		cout << "6.DeleteText    \n";
 	}
+	if (type == 1 || type == 2)
+	{
+		cout << "1.AddAttribute  ";
+		cout << "2.EditAttribute ";
+		cout << "3.DeleteAttrribute\n";
+	}
+	cout << "0.Back\n";
+
 	cout << endl;
 
 	int ch_command = 0;
@@ -150,6 +151,7 @@ void showMenu(Tag * tag)
 		{
 			cout << ptag->getText(ch_num - 1);
 			char temp_str[81];
+			cin.get();
 			cin.getline(temp_str, 80);
 			ptag->addText(temp_str, ch_num - 1);
 		}
@@ -157,6 +159,7 @@ void showMenu(Tag * tag)
 		{
 			cout << ptag->getText();
 			char temp_str[81];
+			cin.get();
 			cin.getline(temp_str, 80);
 			ptag->addText(temp_str);
 		}
@@ -173,12 +176,14 @@ void showMenu(Tag * tag)
 		if (ch_num > 0)
 		{
 			char temp_str[81];
+			cin.get();
 			cin.getline(temp_str, 80);
 			ptag->updateText(temp_str, ch_num - 1);
 		}
 		else if (ch_num == 0)
 		{
 			char temp_str[81];
+			cin.get();
 			cin.getline(temp_str, 80);
 			ptag->updateText(temp_str);
 		}
@@ -260,10 +265,10 @@ Tag * createTag()
 	cout << "which tag you want?";
 	for (int i = 0; i < tag_nums; i++)
 	{
-		if (i % 4 == 0) cout << endl;
+		if (i % 5 == 0) cout << endl;
 		cout << "\t" << (i + 1) << "." << tag_names[i] << "\t";
 	}
-	cout << endl;
+	cout << endl << endl;
 
 	Tag* tempTag = nullptr;
 
@@ -280,13 +285,17 @@ Tag * createTag()
 	else if (ch_num > tag_num_single && ch_num <= (tag_nums - 2))
 	{
 		PairedTag* tempPTag = new PairedTag(tag_names[ch_num - 1]);
-		cout << "Enter color(red,pink,... or #RGB or #RRGGBB :";
-		char tag_color[10];
-		cin >> tag_color;
-		tempPTag->addAttr("color", tag_color);
+		if (ch_num < (tag_nums - 3)) {
+			cout << "Enter color(red,pink,... or #RGB or #RRGGBB :";
+			char tag_color[10];
+			cin >> tag_color;
+			char attr_val[20];
+			sprintf(attr_val, "color:%s;", tag_color);
+			tempPTag->addAttr("style", attr_val);
+		}
 		tempTag = tempPTag;
 	}
-	else if (ch_num == (tag_nums - 2))
+	else if (ch_num == tag_nums)
 	{
 		cout << "Enter single tag name(0:Cancel):";
 		string tag_name;
