@@ -1,23 +1,35 @@
 #include <iostream>
-#include "LinkedList.cpp"
+#include <fstream>
+#include <string>
+#include "PairedTag.h"
+#include "SingleTag.h"
+#include "TagMenu.h"
 
 using namespace std;
 
 int main()
 {
-	LinkedList<int> mylist;
-	mylist.addNode(1);
-	mylist.addNode(2);
-	for (int i = 0; i < mylist.getSize(); i++)
-	{
-		cout << mylist.getNodeData(i);
+	char file_name[81];
+	cout << "enter file name:";
+	cin.getline(file_name, 80);
+
+	cout << "*** back from body = save ***\n";
+	cout << "press any key to create html tag!";
+	cin.get();
+
+	fstream fp(strcat(file_name, ".html"), ios::out);
+	if (!fp) {
+		cout << endl;
+		cout << "problem opennig file!!\n";
 	}
-	cout << endl;
-	mylist.addNode(0, 2);
-	while (mylist.getSize()>0)
+	else
 	{
-		cout << mylist.getNodeData(mylist.getSize() - 1);
-		mylist.removeNode(mylist.getSize() - 1);
+		PairedTag html("html");
+		showMenu(&html);
+		fp << html;
+		fp.close();
+		cout << endl;
+		cout << "file created successfully\n";
 	}
 	return 0;
 }
